@@ -2,15 +2,14 @@
 	<head>
 		<title>wuzi</title>
          <script src="js/jquery.min.js" charset="utf-8"></script>
+         <script src="https://blog-static.cnblogs.com/files/xieyongbin/xlsx.full.min.js"></script>
         
       <style>
-
     .table {
       display: table;
     }
     .table li {
       display: table-row;
-     /* background: #beffee;*/
     }
     .disTable li:nth-child(odd) {
       background: #bec3ff;
@@ -18,6 +17,7 @@
     
     .table li div {
         width: 50px;
+        height:50px;
         line-height: 50px;
         display: table-cell;
         text-align: center;
@@ -42,6 +42,10 @@
       </style>
 	</head>
 	<body>
+        <button class="btn btn-info " type="button" οnclick="do_collection()"  title="非Guest用户可收藏">收藏</button>
+          <input type="file" id="file"/>
+          <div id="demo"></div>
+        </br> 
         <ul class="table">
           <li>
             <div class="float-left">一</div>
@@ -58,7 +62,7 @@
                       
         </ul>
     </body>
-   <script>
+   <script type="text/javascript">
                var nums = [];
                 for(var i = 0;i< 50;i++){
                    if(i < 10){
@@ -66,28 +70,97 @@
                    }else{
                         nums[i-1] = i +"";
                      }
-                }
-                
-                  
-            /*    var row = 10,colun = 100;
+                }              
+                          
+                var row = 10,colun = 100;
                   for(var i = 0;i <row; i++){
-                   var str 
-                   if(i % 10 == 0){
-                         var str = '<li>'+
-                    }
-                  
-                                '<div class="float-left">'+nums[i]+'</div>'+
-                                '<div class="float-left">'+nums[i]+'</div>'+
-                                '<div class="float-left">'+nums[i]+'</div>'+
-                                '<div class="float-left">'+nums[i]+'</div>'+
-                                '<div class="float-left">'+nums[i]+'</div>'+ 
-                                '<div class="float-left">'+nums[i]+'</div>'+ 
-                                '<div class="float-left">'+nums[i]+'</div>'+ 
-                                '<div class="float-left">'+nums[i]+'</div>'+ 
-                                '<div class="float-left">'+nums[i]+'</div>'+  
-                                '<div class="float-left">'+nums[i]+'</div>'+ 
+                        var  num_one =  nums[i*10] ==undefined?"":nums[i*10];
+                        var  num_two =  nums[i*10+1] ==undefined?"":nums[i*10+1];
+                        var  num_three =  nums[i*10+2] ==undefined?"":nums[i*10+2];
+                        var  num_for =  nums[i*10+3] ==undefined?"":nums[i*10+3];
+                        var  num_five =  nums[i*10+4] ==undefined?"":nums[i*10+4]; 
+                        var  num_six =  nums[i*10+5] ==undefined?"":nums[i*10+5]; 
+                        var  num_seven =  nums[i*10+6]==undefined?"":nums[i*10+6]; 
+                        var  num_eight =  nums[i*10+7] ==undefined?"":nums[i*10+7]; 
+                        var  num_neight =  nums[i*10+8] ==undefined?"":nums[i*10+8]; 
+                        var  num_tem =  nums[i*10+9] ==undefined?"":nums[i*10+9];
+                        var str = '<li>'+            
+                                '<div class="float-left">'+num_one+'</div>'+
+                                '<div class="float-left">'+num_two+'</div>'+
+                                '<div class="float-left">'+num_three+'</div>'+
+                                '<div class="float-left">'+num_for+'</div>'+
+                                '<div class="float-left">'+num_five+'</div>'+ 
+                                '<div class="float-left">'+num_six+'</div>'+ 
+                                '<div class="float-left">'+num_seven+'</div>'+ 
+                                '<div class="float-left">'+num_eight+'</div>'+ 
+                                '<div class="float-left">'+num_neight+'</div>'+                            
+                                '<div class="float-left">'+num_tem+'</div>'+ 
+                               '</li>';
+                           str += '<li>'+            
+                                '<div class="float-left" attr="'+num_one+'"></div>'+
+                                '<div class="float-left" attr="'+num_two+'"></div>'+
+                                '<div class="float-left" attr="'+num_three+'"></div>'+
+                                '<div class="float-left" attr="'+num_for+'"></div>'+
+                                '<div class="float-left" attr="'+num_five+'"></div>'+ 
+                                '<div class="float-left" attr="'+num_six+'"></div>'+ 
+                                '<div class="float-left" attr="'+num_seven+'"></div>'+ 
+                                '<div class="float-left" attr="'+num_eight+'"></div>'+ 
+                                '<div class="float-left" attr="'+num_neight+'"></div>'+                            
+                                '<div class="float-left" attr="'+num_tem+'"></div>'+ 
                                '</li>';
                        $(".table").append(str);
-                  } */
-         </script>
+                  } 
+           
+           $(document).ready(function(){
+
+        /*
+        FileReader共有4种读取方法：
+        1.readAsArrayBuffer(file)：将文件读取为ArrayBuffer。
+        2.readAsBinaryString(file)：将文件读取为二进制字符串
+        3.readAsDataURL(file)：将文件读取为Data URL
+        4.readAsText(file, [encoding])：将文件读取为文本，encoding缺省值为'UTF-8'
+                     */
+        var wb;//读取完成的数据
+        var rABS = false; //是否将文件读取为二进制字符串
+
+
+        function fixdata(data) { //文件流转BinaryString
+            var o = "",
+                l = 0,
+                w = 10240;
+            for(; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+            o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+            return o;
+        }
+
+
+        $("#file").change(function(){
+            if(!this.files) {
+                return;
+            }
+            var f = this.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var data = e.target.result;
+                if(rABS) {
+                    wb = XLSX.read(btoa(fixdata(data)),{
+                        type: 'base64'
+                    });
+                } else {
+                    wb = XLSX.read(data,{
+                        type: 'binary'
+                    });
+                }
+                document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+            };
+            if(rABS) {
+                reader.readAsArrayBuffer(f);
+            } else {
+                reader.readAsBinaryString(f);
+            }
+        })
+
+    })
+    
+</script>
 </html>	
