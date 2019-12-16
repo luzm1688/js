@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<title>wuzi</title>
+         <script src="js/jquery.min.js" charset="utf-8"></script>
+        
+      <style>
+
+    .table {
+      display: table;
+    }
+    .table li {
+      display: table-row;
+     /* background: #beffee;*/
+    }
+    .disTable li:nth-child(odd) {
+      background: #bec3ff;
+    }
+    
+    .table li div {
+        width: 50px;
+        line-height: 50px;
+        display: table-cell;
+        text-align: center;
+        border: 1px solid #333;
+        margin-right:-1px; 
+        margin-bottom:-1px;
+        padding: 10px;
+   }
+   .float-left{float:left;}
+
+   .clear-both{clear:both;}
+
+   /* .table li:nth-child(odd) div:nth-child(even) {
+      background: #beffee;
+    }
+    .table li:nth-child(even) div:nth-child(even) {
+      background: #bec3ff;
+    }*/
+
+       
+           
+      </style>
+	</head>
+	<body>
+        <ul class="table">
+          <li>
+            <div class="float-left">一</div>
+            <div class="float-left">二</div>
+            <div class="float-left">三</div>
+            <div class="float-left">四</div> 
+            <div class="float-left">五</div> 
+            <div class="float-left">六</div> 
+            <div class="float-left">七</div> 
+            <div class="float-left">八</div> 
+            <div class="float-left">九</div>  
+            <div class="float-left">零</div>  
+          </li>
+                      
+        </ul>
+    </body>
+   <script>
+               var nums = [];
+                for(var i = 0;i< 50;i++){
+                   if(i < 10){
+                      nums[i-1] = "0"+i;
+                   }else{
+                        nums[i-1] = i +"";
+                     }
+                }
+                
+                  
+            /*    var row = 10,colun = 100;
+                  for(var i = 0;i <row; i++){
+                   var str 
+                   if(i % 10 == 0){
+                         var str = '<li>'+
+                    }
+                  
+                                '<div class="float-left">'+nums[i]+'</div>'+
+                                '<div class="float-left">'+nums[i]+'</div>'+
+                                '<div class="float-left">'+nums[i]+'</div>'+
+                                '<div class="float-left">'+nums[i]+'</div>'+
+                                '<div class="float-left">'+nums[i]+'</div>'+ 
+                                '<div class="float-left">'+nums[i]+'</div>'+ 
+                                '<div class="float-left">'+nums[i]+'</div>'+ 
+                                '<div class="float-left">'+nums[i]+'</div>'+ 
+                                '<div class="float-left">'+nums[i]+'</div>'+  
+                                '<div class="float-left">'+nums[i]+'</div>'+ 
+                               '</li>';
+                       $(".table").append(str);
+                  } */
+         </script>
+</html>	
