@@ -1,125 +1,163 @@
 <html>
-	<head>
-		<title>wuzi</title>
-         <script src="js/jquery.min.js" charset="utf-8"></script>
-         <script src="https://blog-static.cnblogs.com/files/xieyongbin/xlsx.full.min.js"></script>
-        
-      <style>
-    .table {
-      display: table;
-    }
-    .table li {
-      display: table-row;
-    }
-    .disTable li:nth-child(odd) {
-      background: #bec3ff;
-    }
-    
-    .table li div {
-        width: 50px;
-        height:50px;
-        line-height: 50px;
-        display: table-cell;
-        text-align: center;
-        border: 1px solid #333;
-        margin-right:-1px; 
-        margin-bottom:-1px;
-        padding: 10px;
-   }
-   .float-left{float:left;}
+<head>
+    <title>wuzi</title>
+    <script src="js/jquery.min.js" charset="utf-8"></script>
+    <script src="https://blog-static.cnblogs.com/files/xieyongbin/xlsx.full.min.js"></script>
 
-   .clear-both{clear:both;}
+    <style>
+        .table {
+            display: table;
+            margin: 0 auto;
+        }
 
-   /* .table li:nth-child(odd) div:nth-child(even) {
-      background: #beffee;
-    }
-    .table li:nth-child(even) div:nth-child(even) {
-      background: #bec3ff;
-    }*/
+        .table li {
+            display: table-row;
+        }
 
-       
-           
-      </style>
-	</head>
-	<body>
-        <button class="btn btn-info " type="button" οnclick="do_collection()"  title="非Guest用户可收藏">收藏</button>
-          <input type="file" id="file"/>
-          <div id="demo"></div>
-        </br> 
-        <ul class="table">
-          <li>
-            <div class="float-left">一</div>
-            <div class="float-left">二</div>
-            <div class="float-left">三</div>
-            <div class="float-left">四</div> 
-            <div class="float-left">五</div> 
-            <div class="float-left">六</div> 
-            <div class="float-left">七</div> 
-            <div class="float-left">八</div> 
-            <div class="float-left">九</div>  
-            <div class="float-left">零</div>  
-          </li>
-                      
-        </ul>
-    </body>
-   <script type="text/javascript">
-               var nums = [];
-                for(var i = 0;i< 50;i++){
-                   if(i < 10){
-                      nums[i-1] = "0"+i;
-                   }else{
-                        nums[i-1] = i +"";
-                     }
-                }              
-                          
-                var row = 10,colun = 100;
-                  for(var i = 0;i <row; i++){
-                        var  num_one =  nums[i*10] ==undefined?"":nums[i*10];
-                        var  num_two =  nums[i*10+1] ==undefined?"":nums[i*10+1];
-                        var  num_three =  nums[i*10+2] ==undefined?"":nums[i*10+2];
-                        var  num_for =  nums[i*10+3] ==undefined?"":nums[i*10+3];
-                        var  num_five =  nums[i*10+4] ==undefined?"":nums[i*10+4]; 
-                        var  num_six =  nums[i*10+5] ==undefined?"":nums[i*10+5]; 
-                        var  num_seven =  nums[i*10+6]==undefined?"":nums[i*10+6]; 
-                        var  num_eight =  nums[i*10+7] ==undefined?"":nums[i*10+7]; 
-                        var  num_neight =  nums[i*10+8] ==undefined?"":nums[i*10+8]; 
-                        var  num_tem =  nums[i*10+9] ==undefined?"":nums[i*10+9];
-                        var str = '<li>'+            
-                                '<div class="float-left">'+num_one+'</div>'+
-                                '<div class="float-left">'+num_two+'</div>'+
-                                '<div class="float-left">'+num_three+'</div>'+
-                                '<div class="float-left">'+num_for+'</div>'+
-                                '<div class="float-left">'+num_five+'</div>'+ 
-                                '<div class="float-left">'+num_six+'</div>'+ 
-                                '<div class="float-left">'+num_seven+'</div>'+ 
-                                '<div class="float-left">'+num_eight+'</div>'+ 
-                                '<div class="float-left">'+num_neight+'</div>'+                            
-                                '<div class="float-left">'+num_tem+'</div>'+ 
-                               '</li>';
-                           str += '<li>'+            
-                                '<div class="float-left" attr="'+num_one+'"></div>'+
-                                '<div class="float-left" attr="'+num_two+'"></div>'+
-                                '<div class="float-left" attr="'+num_three+'"></div>'+
-                                '<div class="float-left" attr="'+num_for+'"></div>'+
-                                '<div class="float-left" attr="'+num_five+'"></div>'+ 
-                                '<div class="float-left" attr="'+num_six+'"></div>'+ 
-                                '<div class="float-left" attr="'+num_seven+'"></div>'+ 
-                                '<div class="float-left" attr="'+num_eight+'"></div>'+ 
-                                '<div class="float-left" attr="'+num_neight+'"></div>'+                            
-                                '<div class="float-left" attr="'+num_tem+'"></div>'+ 
-                               '</li>';
-                       $(".table").append(str);
-                  } 
-           
-           $(document).ready(function(){
+        .disTable li:nth-child(odd) {
+            background: #bec3ff;
+        }
 
+        .table li div {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: table-cell;
+            text-align: center;
+            border: 1px solid #333;
+            margin-right: -1px;
+            margin-bottom: -1px;
+            padding: 5px;
+            /* border-radius: 110px; */
+        }
+
+        .float-left {
+            float: left;
+        }
+        /* .table li:nth-child(odd) div:nth-child(even) {
+           background: #beffee;
+         }
+         .table li:nth-child(even) div:nth-child(even) {
+           background: #bec3ff;
+         }*/
+        span.head_0 {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: #CC6699;
+            border-radius: 50%;
+            margin: 0 auto;
+            color: #FFFFFF;
+        }
+        .total {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: #cc0033;
+            border-radius: 50%;
+            color: #FFFFFF;
+        }
+        .li_hr {
+            padding: 5px;
+            background: #CCCCCC;
+        }
+    </style>
+</head>
+<body>
+<input type="file" id="file"/>
+<div id="demo"></div>
+</br>
+<ul class="table">
+    <li>
+        <div class="float-left">一</div>
+        <div class="float-left">二</div>
+        <div class="float-left">三</div>
+        <div class="float-left">四</div>
+        <div class="float-left">五</div>
+        <div class="float-left">六</div>
+        <div class="float-left">七</div>
+        <div class="float-left">八</div>
+        <div class="float-left">九</div>
+        <div class="float-left">零</div>
+    </li>
+
+</ul>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var nums = [];
+        for (var i = 0; i < 50; i++) {
+            if (i < 10) {
+                nums[i - 1] = "0" + i;
+            } else {
+                nums[i - 1] = i + "";
+            }
+        }
+        var row = 10, colun = 100;
+        for (var i = 0; i < 5; i++) {
+            var num_one = nums[i * 10] == undefined ? "" : nums[i * 10];
+            var num_two = nums[i * 10 + 1] == undefined ? "" : nums[i * 10 + 1];
+            var num_three = nums[i * 10 + 2] == undefined ? "" : nums[i * 10 + 2];
+            var num_for = nums[i * 10 + 3] == undefined ? "" : nums[i * 10 + 3];
+            var num_five = nums[i * 10 + 4] == undefined ? "" : nums[i * 10 + 4];
+            var num_six = nums[i * 10 + 5] == undefined ? "" : nums[i * 10 + 5];
+            var num_seven = nums[i * 10 + 6] == undefined ? "" : nums[i * 10 + 6];
+            var num_eight = nums[i * 10 + 7] == undefined ? "" : nums[i * 10 + 7];
+            var num_neight = nums[i * 10 + 8] == undefined ? "" : nums[i * 10 + 8];
+            var num_tem = nums[i * 10 + 9] == undefined ? "" : nums[i * 10 + 9];
+            var str = '<li>' +
+                '<div class="float-left"><span class="head_0">' + num_one + '</span></div>' +
+                '<div class="float-left"><span class="head_0">' + num_two + '</span></div>' +
+                '<div class="float-left"><span class="head_0">' + num_three + '</span></div>' +
+                '<div class="float-left"><span class="head_0">' + num_for + '</span></div></div>' +
+                '<div class="float-left"><span class="head_0">' + num_five + '</span></div>' +
+                '<div class="float-left"><span class="head_0">' + num_six + '</span></div>' +
+                '<div class="float-left"><span class="head_0">' + num_seven + '</span></div>' +
+                '<div class="float-left"><span class="head_0">' + num_eight + '</span></div>' +
+                '<div class="float-left"><span class="head_0">' + num_neight + '</span></div>';
+            if (num_tem == "") {
+                str += '<div class="float-left">' + num_tem + '</div>';
+            } else {
+                str += '<div class="float-left"><span  class="head_0">' + num_tem + '</span></div>';
+            }
+
+            str += '</li>';
+            str += '<li>' +
+                '<div class="float-left class1"  id="' + num_one + '"  attr="' + num_one + '"></div>' +
+                '<div class="float-left class2"  id="' + num_two + '" attr="' + num_two + '"></div>' +
+                '<div class="float-left class3"  id="' + num_three + '" attr="' + num_three + '"></div>' +
+                '<div class="float-left class4"  id="' + num_for + '" attr="' + num_for + '"></div>' +
+                '<div class="float-left class5"  id="' + num_five + '" attr="' + num_five + '"></div>' +
+                '<div class="float-left class6"  id="' + num_six + '" attr="' + num_six + '"></div>' +
+                '<div class="float-left class7"  id="' + num_seven + '" attr="' + num_seven + '"></div>' +
+                '<div class="float-left class8"  id="' + num_eight + '" attr="' + num_eight + '"></div>' +
+                '<div class="float-left class9"  id="' + num_neight + '" attr="' + num_neight + '"></div>' +
+                '<div class="float-left class10"  id="' + num_tem + '" attr="' + num_tem + '"></div>' +
+                '</li>';
+            $(".table").append(str);
+        }
+        $(".table").append("<div class='li_hr'><span>统计</span> </div>");
+        //统计
+        var str = '<li class="b_li">' +
+            '<div class="float-left"><span class="total1 total"></span></div>' +
+            '<div class="float-left"><span class="total2 total"></span></div>' +
+            '<div class="float-left"><span class="total3 total"></span> </div>' +
+            '<div class="float-left"><span class="total4 total"></span> </div>' +
+            '<div class="float-left"><span class="total5 total"><span</span></div>' +
+            '<div class="float-left "><span class="total6 total"></span> </div>' +
+            '<div class="float-left"><span class="total7 total"></span> </div>' +
+            '<div class="float-left"><span class="total8 total"></span></div>' +
+            '<div class="float-left"><span class="total9 total"></span> </div>' +
+            '<div class="float-left"><span class="total10 total "></span> </div>' +
+            '</li>';
+        $(".table").append(str);
         /*
         FileReader共有4种读取方法：
         1.readAsArrayBuffer(file)：将文件读取为ArrayBuffer。
         2.readAsBinaryString(file)：将文件读取为二进制字符串
         3.readAsDataURL(file)：将文件读取为Data URL
         4.readAsText(file, [encoding])：将文件读取为文本，encoding缺省值为'UTF-8'
-                     */
+       */
         var wb;//读取完成的数据
         var rABS = false; //是否将文件读取为二进制字符串
 
@@ -128,39 +166,66 @@
             var o = "",
                 l = 0,
                 w = 10240;
-            for(; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+            for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
             o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
             return o;
         }
 
-
-        $("#file").change(function(){
-            if(!this.files) {
+        $("#file").change(function () {
+            if (!this.files) {
                 return;
             }
             var f = this.files[0];
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 var data = e.target.result;
-                if(rABS) {
-                    wb = XLSX.read(btoa(fixdata(data)),{
+                if (rABS) {
+                    wb = XLSX.read(btoa(fixdata(data)), {
                         type: 'base64'
                     });
                 } else {
-                    wb = XLSX.read(data,{
+                    wb = XLSX.read(data, {
                         type: 'binary'
                     });
                 }
-                document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+                var map = new Map();
+
+               nums.forEach((k, v) => {
+                        map.set(k, 0);
+                });
+
+                var a = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+                a.forEach(function (item, index) {
+                    var k1 = item.k1.replace("$", "");
+                    var num = nums[k1];
+                    if (num != undefined) {
+                        map.set(k1, map.get(k1) + 1);
+                    }
+
+                });
+
+                nums.forEach((k, v) => {
+                    var total = map.get(k);
+                if (total > 0) {
+                    $(".table #" + k).text(total);
+                    $(".table #" + k).attr("repeat", total);
+                }
+            });
+                for (var i = 1; i < 11; i++) {
+                    var total = 0;
+                    $(".table .class" + i).each(function () {
+                        var repeat = parseInt($(this).attr("repeat") == null ? 0 : $(this).attr("repeat"));
+                        total += repeat;
+                    });
+                    $(".table .total" + i).text(total);
+                }
             };
-            if(rABS) {
+            if (rABS) {
                 reader.readAsArrayBuffer(f);
             } else {
                 reader.readAsBinaryString(f);
             }
         })
-
     })
-    
 </script>
-</html>	
+</html>
